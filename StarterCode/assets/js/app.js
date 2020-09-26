@@ -20,3 +20,9 @@ var svg = d3
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
+// import data
+d3.csv("data/data.csv").then(function(censusData){
+  console.log(censusData);
+    
+  healthData.forEach(function(data){
+    console.log(data);
