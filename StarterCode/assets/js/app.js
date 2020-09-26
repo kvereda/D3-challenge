@@ -20,9 +20,39 @@ var svg = d3
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
+var chosenXAxis = "poverty";
+var chosenYAxis = "healthcare";
+
+// updating x-scale var when clicking the axis label
+function xScale(censusData, chosenXAxis) {
+  
+  var xLinearScale = d3.scaleLinear()
+    .domain([d3.min(censusData, d => d[chosenXAxis]) * 0.8,
+      d3.max(censusData, d => d[chosenXAxis]) * 1.2
+    ])
+    .range([0, width]);
+
+  return xLinearScale;
+
+}
+
+// updating x-axis var when clicking the axis label
+function renderAxes(newXScale, xAxis) {
+  var bottomAxis = d3.axisBottom(newXScale);
+
+  xAxis.transition()
+    .duration(1000)
+    .call(bottomAxis);
+
+  return xAxis;
+}
+
+
 // import data
-d3.csv("data/data.csv").then(function(censusData){
+d3.csv("/assets/data/data.csv").then(function(censusData){
   console.log(censusData);
     
   censusData.forEach(function(data){
     console.log(data);
+  });
+
