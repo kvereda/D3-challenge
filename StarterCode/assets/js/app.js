@@ -47,6 +47,32 @@ function renderAxes(newXScale, xAxis) {
   return xAxis;
 }
 
+//  updating y-scale
+function yScale(censusData, chosenYAxis) {
+  
+  var yLinearScale = d3.scaleLinear()
+    .domain([d3.min(censusData, d => d[chosenYAxis]) * 0.8,
+      d3.max(censusData, d => d[chosenYAxis]) * 1.2
+    ])
+    .range([0, width]);
+
+  return YLinearScale;
+
+}
+
+// updating y-axis 
+function renderAxes(newYScale, yAxis) {
+  var leftAxis = d3.axisLeft(newYScale);
+
+  yAxis.transition()
+    .duration(1000)
+    .call(bottomAxis);
+
+  return yAxis;
+}
+
+
+
 
 // import data
 d3.csv("/assets/data/data.csv").then(function(censusData){
