@@ -24,5 +24,5 @@ var chartGroup = svg.append("g")
 d3.csv("data/data.csv").then(function(censusData){
   console.log(censusData);
     
-  healthData.forEach(function(data){
+  censusData.forEach(function(data){
     console.log(data);
