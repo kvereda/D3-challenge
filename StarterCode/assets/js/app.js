@@ -101,6 +101,9 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
   if (chosenXAxis === "poverty") {
     var label = "Poverty:";
   }
+  else {
+    label = "Average Poverty"
+  }
   
 // for y
 
@@ -131,17 +134,18 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 
 // import data
 d3.csv("/assets/data/data.csv").then(function(censusData, err) {
-  if (err) throw err;
+    if (err) throw err;
 
-// parse
-  censusData.forEach(function(data) {
-    data.poverty = +data.poverty;
-    data.healthcare = +data.healthcare;
-    data.age = +data.age;
-    data.income = +data.income;
-    data.smokes = +data.smokes;
-    data.obesity = +data.obesity;
-});
+  // parse
+    censusData.forEach(function(data) {
+      data.poverty = +data.poverty;
+      data.healthcare = +data.healthcare;
+      data.age = +data.age;
+      data.income = +data.income;
+      data.smokes = +data.smokes;
+      data.obesity = +data.obesity;
+  });
+
 
 var xLinearScale = xScale(censusData, chosenXAxis);
 var yLinearScale = d3.scaleLinear()
