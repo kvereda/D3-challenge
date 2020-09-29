@@ -138,10 +138,15 @@ d3.csv("/assets/data/data.csv").then(function(censusData, err) {
 
   // parse
     censusData.forEach(function(data) {
+      data.abbr = +data.abbr
       data.poverty = +data.poverty;
+      data.povertyMoe = +data.povertyMoe
       data.healthcare = +data.healthcare;
+      data.healthcareLow = +data.healthcareLow
+      data.healthcareHigh = +data.healthcareHigh
       data.age = +data.age;
       data.income = +data.income;
+      data.incomeMoe = +data.incomeMoe;
       data.smokes = +data.smokes;
       data.obesity = +data.obesity;
   });
